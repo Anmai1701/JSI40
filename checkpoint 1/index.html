@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Auth Login / Signup</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        GoogleAuthProvider,
+        signInWithPopup
+      } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      window.auth = auth;
+      window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+      window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+      window.GoogleAuthProvider = GoogleAuthProvider;
+      window.signInWithPopup = signInWithPopup;
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="box">
+        <h2>Login</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email" />
+        <input type="password" id="loginPassword" placeholder="Password" />
+
+        <button id="loginBtn">Login</button>
+
+        <p>Don't have an account? <span class="switch" onclick="showSignup()">Signup</span></p>
+
+        <button id="googleLogin" class="google-btn">Login with Google</button>
+      </div>
+
+      <div class="box hidden" id="signupBox">
+        <h2>Signup</h2>
+
+        <input type="email" id="signupEmail" placeholder="Email" />
+        <input type="password" id="signupPassword" placeholder="Create password" />
+        <input type="password" id="signupConfirm" placeholder="Confirm password" />
+
+        <button id="signupBtn">Signup</button>
+
+        <p>Already have an account? <span class="switch" onclick="showLogin()">Login</span></p>
+
+        <button id="googleSignup" class="google-btn">Signup with Google</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
